@@ -4,16 +4,12 @@ const morgan = require('morgan');
 const appData = require('./playstore.js');
 
 const app = express();
-app.use(morgan('dev'));
+app.use(morgan('common'));
 
 app.get('/apps', (req, res) => {
   let filteredApps = [...appData];
 
   const { sort, genres } = req.query;
-
-  if(!sort && !genres){
-    return appData;
-  }
 
   const acceptedGenres = ['Action', 'Puzzle', 'Strategy', 'Casual', 'Arcade', 'Card'];
 
@@ -42,7 +38,4 @@ app.get('/apps', (req, res) => {
   res.json(filteredApps);
 });
 
-app.listen(8000, () => {
-  // eslint-disable-next-line no-console
-  console.log('Server started on PORT 8000');
-});
+module.exports = app;
