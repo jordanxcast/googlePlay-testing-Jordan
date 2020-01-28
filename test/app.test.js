@@ -2,7 +2,7 @@ const supertest = require('supertest');
 const app = require('../app');
 const { expect } = require('chai');
 
-describe('GooglePlay App', () => {
+describe('GET /apps', () => {
   it('should return an array of Apps', () => {
     return supertest(app)
       .get('/apps')
